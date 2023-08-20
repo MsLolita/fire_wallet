@@ -3,4 +3,4 @@
 # fireWallet waitlist enter
 
 
-![image](https://github.com/MsLolita/fireWallet/assets/58307006/a0e0e1f5-a2f9-4a57-b2d5-225d4e6ccc5a)
+![image](https://github.com/MsLolita/fire_wallet/assets/58307006/7be02996-7e84-442c-b1da-6d4fcd46d23a)
