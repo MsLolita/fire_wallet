@@ -40,7 +40,6 @@ class AutoReger:
 
         FireWallet.referral = referral_link.split('ref=')[-1]
 
-
         threads = input("Enter amount of threads: ")
 
         if threads.isnumeric() and int(threads) > 0:
