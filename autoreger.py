@@ -15,11 +15,13 @@ class AutoReger:
         self.success = 0
         self.custom_user_delay = None
 
-    def get_accounts(self, referrals_amount: int = 100):
+    def get_accounts(self):
         emails = file_to_list(self.emails_path)
         proxies = file_to_list(self.proxies_path)
 
         if not emails:
+            referrals_amount = int(input("emails.txt is empty! Amount of referrals: "))
+
             logger.info(f"Generated random emails!")
             emails = generate_random_emails(referrals_amount)
 
@@ -54,9 +56,7 @@ class AutoReger:
         else:
             self.custom_user_delay = 0
 
-        referrals_amount = int(input("Referrals amount: "))
-
-        accounts = self.get_accounts(referrals_amount)
+        accounts = self.get_accounts()
 
         with ThreadPoolExecutor(max_workers=threads) as executor:
             executor.map(self.register, accounts)
