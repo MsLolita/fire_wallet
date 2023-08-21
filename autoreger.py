@@ -15,13 +15,13 @@ class AutoReger:
         self.success = 0
         self.custom_user_delay = None
 
-    def get_accounts(self):
+    def get_accounts(self, referrals_amount: int = 100):
         emails = file_to_list(self.emails_path)
         proxies = file_to_list(self.proxies_path)
 
         if not emails:
             logger.info(f"Generated random emails!")
-            emails = generate_random_emails(100)
+            emails = generate_random_emails(referrals_amount)
 
         min_accounts_len = len(emails)
 
@@ -40,6 +40,7 @@ class AutoReger:
 
         FireWallet.referral = referral_link.split('ref=')[-1]
 
+
         threads = input("Enter amount of threads: ")
 
         if threads.isnumeric() and int(threads) > 0:
@@ -54,7 +55,9 @@ class AutoReger:
         else:
             self.custom_user_delay = 0
 
-        accounts = self.get_accounts()
+        referrals_amount = int(input("Referrals amount: "))
+
+        accounts = self.get_accounts(referrals_amount)
 
         with ThreadPoolExecutor(max_workers=threads) as executor:
             executor.map(self.register, accounts)
